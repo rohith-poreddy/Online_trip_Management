@@ -1,0 +1,63 @@
+package com.example.demo.model;
+
+import java.time.LocalDate;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+@Entity
+@Table(name="feedback")
+public class FeedBack {
+	
+	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	private long feedbackid;
+	
+	@Column
+    private String feedback;
+	
+	@Column
+	private int rating;
+	
+	@Column
+	private LocalDate submitDate;
+	
+	public long getFeedbackid() {
+		return feedbackid;
+	}
+
+	public void setFeedbackid(long feedbackid) {
+		this.feedbackid = feedbackid;
+	}
+
+	public String getFeedback() {
+		return feedback;
+	}
+
+	public void setFeedback(String feedback) {
+		this.feedback = feedback;
+	}
+
+	public int getRating() {
+		return rating;
+	}
+
+	public void setRating(int rating) {
+		this.rating = rating;
+	}
+
+	public LocalDate getSubmitDate() {
+		return submitDate;
+	}
+
+	public void setSubmitDate(LocalDate submitDate) {
+		this.submitDate = submitDate;
+	}
+
+	
+
+}

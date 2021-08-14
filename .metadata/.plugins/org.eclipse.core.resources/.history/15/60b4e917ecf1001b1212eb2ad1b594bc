@@ -1,0 +1,30 @@
+package com.example.demo.model;
+
+import javax.persistence.Entity;
+import javax.persistence.Table;
+
+@Entity
+@Table(name="TicketDetails")
+public class TicketDetails {
+	
+	private long ticketId;
+	
+	private String status;
+
+	public long getTicketId() {
+		return ticketId;
+	}
+
+	public void setTicketId(long ticketId) {
+		this.ticketId = ticketId;
+	}
+
+	public String getStatus() {
+		return status;
+	}
+
+	public void setStatus(String status) {
+		this.status = status;
+	}
+
+}

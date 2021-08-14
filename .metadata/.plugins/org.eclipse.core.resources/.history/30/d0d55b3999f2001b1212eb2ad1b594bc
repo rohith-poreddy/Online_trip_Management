@@ -1,0 +1,49 @@
+package com.example.demo.model;
+
+import java.time.LocalDate;
+
+public class FeedBack {
+	
+	private long feedbackid;
+	
+    private String feedback;
+	
+	private int rating;
+	
+	private LocalDate submitDate;
+	
+	public long getFeedbackid() {
+		return feedbackid;
+	}
+
+	public void setFeedbackid(long feedbackid) {
+		this.feedbackid = feedbackid;
+	}
+
+	public String getFeedback() {
+		return feedback;
+	}
+
+	public void setFeedback(String feedback) {
+		this.feedback = feedback;
+	}
+
+	public int getRating() {
+		return rating;
+	}
+
+	public void setRating(int rating) {
+		this.rating = rating;
+	}
+
+	public LocalDate getSubmitDate() {
+		return submitDate;
+	}
+
+	public void setSubmitDate(LocalDate submitDate) {
+		this.submitDate = submitDate;
+	}
+
+	
+
+}

@@ -1,0 +1,24 @@
+package com.example.demo;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+
+import com.example.demo.repository.IPackageRepository;
+
+@SpringBootApplication
+public class TripmanagementbackendApplication {
+
+	public static void main(String[] args) {
+		SpringApplication.run(TripmanagementbackendApplication.class, args);
+	}
+
+	
+	@Autowired
+	private IPackageRepository ipr;
+	public void run(String... args) throws Exception {
+		this.ipr.save(new Package("pk1","pd1","ptype1",100));
+		this.ipr.save(new Package("pk1","pd1","ptype1",100)));
+		//this.userRepository.save(new User());
+	}
+}

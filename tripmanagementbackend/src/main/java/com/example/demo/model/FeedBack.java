@@ -2,11 +2,13 @@ package com.example.demo.model;
 
 import java.time.LocalDate;
 
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+
 import javax.persistence.Table;
 
 @Entity
@@ -25,6 +27,10 @@ public class FeedBack {
 	
 	@Column
 	private LocalDate submitDate;
+	
+	
+//	@ManyToOne(cascade =  CascadeType.ALL)
+//	@JoinColumn(name="customerId")
 	
 	public long getFeedbackid() {
 		return feedbackId;

@@ -28,22 +28,31 @@ public class Booking {
 	private String bookingTitle;
 	
 	@Column(name="bookingDate")
-	private LocalDate bookingDate;
+	private LocalDate bookingDate=LocalDate.now();
 	
 	public Booking()
 	{
 		
 	}
 	
-	public Booking(long bookingId, String bookingType, String description, String bookingTitle, LocalDate bookingDate) {
+	
+    //long bookingId,LocalDate bookingDate
+	public Booking( String bookingType, String description, String bookingTitle) {
 		//super();
-		this.bookingId = bookingId;
+		//this.bookingId = bookingId;
 		this.bookingType = bookingType;
 		this.description = description;
 		this.bookingTitle = bookingTitle;
-		this.bookingDate = bookingDate;
+		//this.bookingDate = bookingDate;
+	}
+    
+	public LocalDate getBookingDate() {
+		return bookingDate;
 	}
 
+	public void setBookingDate(LocalDate bookingDate) {
+		this.bookingDate = bookingDate;
+	}
 	
 	public long getBookingId() {
 		return bookingId;

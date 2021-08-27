@@ -43,26 +43,17 @@ public class Package {
 	}
 	
 
-	
-	public Package(long packageId, String packageName, String packageDescription, String packageType,
-			double packageCost) {
-		
-		this.packageId = packageId;
+	//long packageId,
+	public Package( String packageName, String packageDescription, String packageType, double packageCost) {
+		//super();
+		//this.packageId = packageId;
 		this.packageName = packageName;
 		this.packageDescription = packageDescription;
 		this.packageType = packageType;
 		this.packageCost = packageCost;
 	}
 
-	public List<Booking> getBookings() {
-		return bookings;
-	}
-
-
-
-	public void setBookings(List<Booking> bookings) {
-		this.bookings = bookings;
-	}
+	
 
 
 	public long getPackageId() {
@@ -104,12 +95,16 @@ public class Package {
 	public void setPackageCost(double packageCost) {
 		this.packageCost = packageCost;
 	}
-
-
-
 	
+	public List<Booking> getBookings() {
+		return bookings;
+	}
 
 
-	
+
+	public void setBookings(List<Booking> bookings) {
+		this.bookings = bookings;
+	}
+
 
 }

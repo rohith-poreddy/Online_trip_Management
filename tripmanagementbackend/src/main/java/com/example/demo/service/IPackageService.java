@@ -9,6 +9,7 @@ import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.example.demo.exception.ResourceNotFoundException;
 import com.example.demo.model.Package;
 import com.example.demo.repository.IPackageRepository;
 
@@ -19,26 +20,24 @@ public class IPackageService {
 	@Autowired
 	private IPackageRepository repo;
 	
-//	public IPackageService(){
-//		this.repo.save(new Package(1,"pk1","pd1","ptype1",100));
-//	}
-	
+
 	public  List<Package> listAll() {
         return repo.findAll();
     }
      
-    public void save(Package ipackage) {
-        repo.save(ipackage);
+    public Package save(Package ipackage) {
+       return  repo.save(ipackage);
     }
      
     public Package get(Long packageId) {
-        return repo.findById(packageId).get();
-    	//Optional<Package> temp=  repo.findById(packageId);
-
-    	//return temp.isPresent()?temp.get():null;
+        return repo.findById(packageId).orElseThrow(()->
+                                           new ResourceNotFoundException("Package not found with id :" + packageId));
+    	
     }
      
     public void delete(Long packageId) {
+        repo.findById(packageId).orElseThrow(()->
+        new ResourceNotFoundException("Package not found with id :" + packageId));
         repo.deleteById(packageId);
     }
 	

@@ -1,7 +1,7 @@
 package com.example.demo.controller;
 
 import java.util.List;
-import java.util.NoSuchElementException;
+
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -24,66 +24,39 @@ public class PackageController {
 	@Autowired
     private IPackageService service;
 	
-	@GetMapping("/viewallpackages")
-    public List<Package> list() {
-        return service.listAll();
-    }
+	@PostMapping("/addpackage")
+    public ResponseEntity<Package> add(@RequestBody Package ipackage) {
+		return new ResponseEntity<Package>(service.save(ipackage), HttpStatus.CREATED);
+        
+    }//AddPackage
+	
+//	@GetMapping("/viewallpackages")
+//    public List<Package> list() {
+//		return  new ResponseEntity<List>(service.listAll());
+//        //return service.listAll();
+//    }
+	@GetMapping("viewallpackages")
+	public ResponseEntity<List<Package>> list()
+	{
+		return  new ResponseEntity<List<Package>>(service.listAll(),HttpStatus.OK);
+	}
 	
 	
 	@GetMapping("/searchpackage/{id}")
 	public ResponseEntity<Package> get(@PathVariable Long id) {
-	    try {
-	        Package ipackage = service.get(id);
-	        return new ResponseEntity<Package>(ipackage, HttpStatus.OK);
-	    } catch (NoSuchElementException e) {
-	        return new ResponseEntity<Package>(HttpStatus.NOT_FOUND);
-	    }      
+		return new ResponseEntity<Package>(service.get(id), HttpStatus.OK);   
 	}//Searching for a particular package i.e SearchPackage
 	
 	
-	@PostMapping("/addpackage")
-    public void add(@RequestBody Package ipackage) {
-        service.save(ipackage);
-    }//AddPackage
+	
 	
 	@DeleteMapping("/deletepackage/{id}")
-    public void delete(@PathVariable Long id) {
+    public ResponseEntity<String> delete(@PathVariable Long id) {
         service.delete(id);
+        return new ResponseEntity<String>("Package deleted successfully!.", HttpStatus.OK);
     }//DeletePackage
 	
 	
-
 }
 
 
-/*
-
-
-@RestController
-@RequestMapping("/booking")
-public class BookingController {
-	@Autowired
-	IBookingRepository repo;
-	@PostMapping(value="/addbooking")
-	public boolean makeBooking(@RequestBody Booking b) {
-		
-		b.setBookingDate(LocalDate.now());
-		repo.save(b);
-		return true;
-	}
-	@DeleteMapping("/cancelbooking/{bookingId}")
-	public Booking cancelBooking(@PathVariable(value="bookingId") int id) {
-		Booking b = repo.findById(id).orElseThrow();
-		repo.delete(b);
-		return b;
-	}
-	@GetMapping("/viewbooking/{bookingId}")
-	public Booking viewBooking(@PathVariable(value="bookingId")int id) {
-		Booking b = repo.findById(id).orElseThrow();
-		return b;
-	}
-	@GetMapping("/")
-	public List<Booking> viewAllBookings(){
-		return repo.findAll();
-	}
-}*/

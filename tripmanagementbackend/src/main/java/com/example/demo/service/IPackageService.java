@@ -1,15 +1,21 @@
 package com.example.demo.service;
 
 
+
 import java.util.List;
 
 
 import javax.transaction.Transactional;
 
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+
+import com.example.demo.dto.PackageDTO;
+import com.example.demo.exception.EmptyListException;
 import com.example.demo.exception.ResourceNotFoundException;
+
 import com.example.demo.model.Package;
 import com.example.demo.repository.IPackageRepository;
 
@@ -19,14 +25,26 @@ public class IPackageService {
  
 	@Autowired
 	private IPackageRepository repo;
+	private ModelMapper modelMapper = new ModelMapper();
+	private PackageDTO mapToDTO(Package packager) {
+		return modelMapper.map(packager, PackageDTO.class);
+	}
 	
+	private Package mapToEntity(PackageDTO packageDTO) {
+		return modelMapper.map(packageDTO, Package.class);
+	}
 
 	public  List<Package> listAll() {
-        return repo.findAll();
+       List<Package> temp= repo.findAll();
+       if(temp.isEmpty())
+    	   throw new EmptyListException("No Packages!!!");
+		return temp;
     }
      
-    public Package save(Package ipackage) {
-       return  repo.save(ipackage);
+    public PackageDTO save(PackageDTO packageDTO) {
+		Package packager  = mapToEntity(packageDTO);
+		repo.save(packager);
+		return mapToDTO(packager);
     }
      
     public Package get(Long packageId) {
@@ -41,8 +59,8 @@ public class IPackageService {
         repo.deleteById(packageId);
     }
 	
+    
+    
 
 }
-/*Optional<Package> temp=  repo.findById(packageId);
 
-return temp.isPresent()?temp.get():null;*/

@@ -1,0 +1,18 @@
+package com.example.demo.dto;
+
+
+public class PackageDTO {
+
+	
+	private String packageName;
+	
+
+    private String packageDescription;
+	
+
+	private String packageType;
+	
+
+	private double packageCost;
+	
+}

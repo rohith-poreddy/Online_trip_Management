@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.example.demo.dto.PackageDTO;
 import com.example.demo.model.Package;
 import com.example.demo.service.IPackageService;
 
@@ -25,16 +26,11 @@ public class PackageController {
     private IPackageService service;
 	
 	@PostMapping("/addpackage")
-    public ResponseEntity<Package> add(@RequestBody Package ipackage) {
-		return new ResponseEntity<Package>(service.save(ipackage), HttpStatus.CREATED);
+    public ResponseEntity<PackageDTO> add(@RequestBody PackageDTO ipackage) {
+		return new ResponseEntity<PackageDTO>(service.save(ipackage), HttpStatus.CREATED);
         
     }//AddPackage
 	
-//	@GetMapping("/viewallpackages")
-//    public List<Package> list() {
-//		return  new ResponseEntity<List>(service.listAll());
-//        //return service.listAll();
-//    }
 	@GetMapping("viewallpackages")
 	public ResponseEntity<List<Package>> list()
 	{

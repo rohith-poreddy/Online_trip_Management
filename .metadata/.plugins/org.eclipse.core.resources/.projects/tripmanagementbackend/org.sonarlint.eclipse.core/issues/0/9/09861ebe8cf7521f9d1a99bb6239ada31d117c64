@@ -1,7 +1,13 @@
 
 \
-java:S1452"&Remove usage of generic wildcard type.(í”‚‰8®¶¬™¸/HşRCRITICALZ
+java:S1452"&Remove usage of generic wildcard type.(›çå¿8“ùıé¹/H¤RCRITICALZ
 CODE_SMELL
 \
-java:S1452"&Remove usage of generic wildcard type.(¯¯ë¢8®¶¬™¸/HÿRCRITICALZ
+java:S1452"&Remove usage of generic wildcard type.(í”‚‰8®¶¬™¸/H‰RCRITICALZ
+CODE_SMELL
+\
+java:S1452'"&Remove usage of generic wildcard type.(¦µù8ğ‹‰º/HÑRCRITICALZ
+CODE_SMELL
+\
+java:S1452 "&Remove usage of generic wildcard type.(¯¯ë¢8®¶¬™¸/HŠRCRITICALZ
 CODE_SMELL

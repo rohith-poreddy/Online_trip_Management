@@ -1,0 +1,56 @@
+package com.example.demo.service;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+
+import com.example.demo.exception.EmptyListException;
+import com.example.demo.exception.ResourceNotFoundException;
+import com.example.demo.model.Customer;
+import com.example.demo.model.Route;
+import com.example.demo.repository.ICustomerRepository;
+import com.example.demo.repository.IRouteRepository;
+
+public class IRouteService {
+	@Autowired
+	private IRouteRepository repo;
+	
+	public  List<Route> listAll() {
+	    List<Route> temp= repo.findAll();
+	    if(temp.isEmpty())
+	    	throw new EmptyListException("No Routes!!!");
+		return temp;
+	}
+	     
+	public Route save(Route route) {
+		return repo.save(route);
+	}
+	
+	public Route get(Long routeId) {
+        return repo.findById(routeId).orElseThrow(()->
+                                           new ResourceNotFoundException("Route not found with id :" + routeId));
+    	
+    }
+     
+    public void delete(Long routeId) {
+        repo.findById(routeId).orElseThrow(()->
+        new ResourceNotFoundException("Route not found with id :" + routeId));
+        repo.deleteById(routeId);
+    }
+    
+    public Route updateCustomer(Route route)  throws ResourceNotFoundException {
+    	 Route existingRoute = repo.findById(route.getRouteId()).orElseThrow(()->
+        new ResourceNotFoundException("customer not found with email id :" + customer.getCustomerId()));
+    	 existingRoute.setRouteFrom(route.getRouteFrom());
+    	 existingRoute.setRouteTo(route.getRouteTo());
+    	 existingRoute.setDepartureTime(route.getDepartureTime());
+    	 existingRoute.setArrivalTime(route.getArrivalTime());
+    	 existingRoute.setEmail(route.getEmail());
+    	 existingRoute.setCustomerName(route.getCustomerName());
+    	 existingRoute.setCustomerName(route.getCustomerName());
+        return repo.save(existingRoute);
+    }
+	
+
+	
+}

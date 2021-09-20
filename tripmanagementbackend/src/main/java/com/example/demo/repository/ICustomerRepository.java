@@ -6,5 +6,5 @@ import com.example.demo.model.Customer;
 
 
 public interface ICustomerRepository extends JpaRepository<Customer,Long> {
-
+	 //Customer findByCustomerName(String customerName);
 }

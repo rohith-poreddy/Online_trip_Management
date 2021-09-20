@@ -40,7 +40,20 @@ public class Customer {
     @JoinColumn(name="customer_id")
     private List <FeedBack> feedbacks=new ArrayList<>();
 	
-	
+	public Customer() {
+		
+	}
+	public Customer(String customerName, String customerPassword, String address, String mobileNo, String email,
+			List<FeedBack> feedbacks) {
+		super();
+		this.customerName = customerName;
+		this.customerPassword = customerPassword;
+		this.address = address;
+		this.mobileNo = mobileNo;
+		this.email = email;
+		this.feedbacks = feedbacks;
+	}
+
 	public long getCustomerId() {
 		return customerId;
 	}
@@ -88,6 +101,8 @@ public class Customer {
 	public void setEmail(String email) {
 		this.email = email;
 	}
+
+	
 
 	
 	

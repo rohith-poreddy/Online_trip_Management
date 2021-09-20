@@ -2,6 +2,7 @@ package com.example.demo.controller;
 
 import java.util.List;
 
+import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -26,7 +27,7 @@ public class PackageController {
     private IPackageService service;
 	
 	@PostMapping("/addpackage")
-    public ResponseEntity<PackageDTO> add(@RequestBody PackageDTO ipackage) {
+    public ResponseEntity<PackageDTO> add(@Valid @RequestBody PackageDTO ipackage) {
 		return new ResponseEntity<PackageDTO>(service.save(ipackage), HttpStatus.CREATED);
         
     }//AddPackage

@@ -1,17 +1,15 @@
 package com.example.demo.model;
 
-import java.util.ArrayList;
-import java.util.List;
 
-import javax.persistence.CascadeType;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType; 
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.PositiveOrZero;
 
 @Entity
 @Table(name="Hotel")
@@ -21,27 +19,29 @@ public class Hotel {
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private long hotelId;
 	
-	@Column
+	@NotBlank(message = "Hotel Name is mandatory")
+	@Column(unique=true)
 	private String hotelName;
 	
+	@NotBlank(message = "Hotel Type is mandatory")
 	@Column
 	private String hotelType;
 	
 	@Column
 	private String hotelDescription;
 	
-	@Column
+	@NotBlank(message = "Address is mandatory")
+	@Column(unique=true)
 	private String address;
 	
+	@PositiveOrZero(message = "Only postive values allowed")
 	@Column
 	private double rent;
 	
+	@NotBlank(message = "status is mandatory")
 	@Column
 	private String status ;
 	
-	@OneToMany(cascade=CascadeType.ALL)
-    @JoinColumn(name="hotel_id")
-    private List <Package> packages=new ArrayList<>();
 	
 	public Hotel()
 	{
@@ -60,13 +60,6 @@ public class Hotel {
 		this.status = status;
 	}
 
-	public List<Package> getPackages() {
-		return packages;
-	}
-
-	public void setPackages(List<Package> packages) {
-		this.packages = packages;
-	}
 	
 	
 	public long getHotelId() {

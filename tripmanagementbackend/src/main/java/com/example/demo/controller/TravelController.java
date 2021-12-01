@@ -13,12 +13,15 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 import com.example.demo.model.Travels;
 
 import com.example.demo.service.ITravelsService;
 
+@RestController
+@RequestMapping("/travel")
 public class TravelController {
 
 	@Autowired

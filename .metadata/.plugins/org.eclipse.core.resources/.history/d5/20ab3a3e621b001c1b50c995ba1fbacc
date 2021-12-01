@@ -1,0 +1,45 @@
+package com.example.demo.service;
+import java.time.LocalDate;
+import java.util.List;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.example.demo.exception.ResourceNotFoundException;
+import com.example.demo.model.Customer;
+import com.example.demo.model.FeedBack;
+import com.example.demo.repository.ICustomerRepository;
+import com.example.demo.repository.IFeedbackRepository;
+
+
+@Service
+public class IFeedbackService {
+	@Autowired
+	IFeedbackRepository feedbackRepo;
+	@Autowired
+	ICustomerRepository customerRepo;
+	
+	public FeedBack addfeedback(long customerId,FeedBack feedback) throws ResourceNotFoundException{
+		feedback.setSubmitDate(LocalDate.now());
+		Customer c = customerRepo.findById(customerId).orElseThrow(()-> new ResourceNotFoundException("Customer ID: "+customerId+" not found!!"));
+		feedback.setCustomer(c);
+		return feedbackRepo.save(feedback);
+	}
+	
+	
+	public FeedBack findByfeedbackId(long id) throws ResourceNotFoundException {
+		return feedbackRepo.findById(id).orElseThrow(()->new ResourceNotFoundException("Feedback ID: "+id+"not found!!"));
+	}
+		
+	
+	public List<FeedBack> findByCustomerId(long id) throws ResourceNotFoundException{
+		if(!customerRepo.existsById(id))
+			throw new ResourceNotFoundException("Customer ID: "+id+" not found!!");
+		return feedbackRepo.findByCustomerId(id);
+	}
+	
+	public List<FeedBack> viewAllFeedbacks(){
+		return feedbackRepo.findAll();
+	}
+	
+
+}

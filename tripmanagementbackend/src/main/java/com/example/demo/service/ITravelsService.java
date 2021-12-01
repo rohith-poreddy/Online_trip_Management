@@ -2,7 +2,10 @@ package com.example.demo.service;
 
 import java.util.List;
 
+import javax.transaction.Transactional;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.example.demo.exception.EmptyListException;
 import com.example.demo.exception.ResourceNotFoundException;
@@ -11,6 +14,8 @@ import com.example.demo.model.Travels;
 
 import com.example.demo.repository.ITravelsRepository;
 
+@Service
+@Transactional
 public class ITravelsService {
 	
 	@Autowired

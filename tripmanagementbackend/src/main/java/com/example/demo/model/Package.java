@@ -10,26 +10,25 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.PositiveOrZero;
 
-//import org.hibernate.validator.constraints.UniqueElements;
-
-
 
 @Entity
-//@UniqueElements
 @Table(name="Package")
 public class Package {
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@Column
 	private long packageId;
-
+  
     @NotBlank(message = "PackageName is mandatory")
-	@Column(name="packageName" , unique=true)
+	@Column(name="packageName")
 	private String packageName;
 	
     @NotBlank(message = "PackageDescription is mandatory")
@@ -50,37 +49,34 @@ public class Package {
     @JoinColumn(name="package_id")
     private List <Booking> bookings=new ArrayList<>();
 	
-	@OneToMany(cascade=CascadeType.ALL)
-    @JoinColumn(name="package_id")
-    private List <@NotBlank(message="Hotel must not be blank")Hotel> hotels=new ArrayList<>();
+	@ManyToOne(cascade =  CascadeType.ALL)
+	@JoinColumn(name="hotelId")
+	private Hotel hotel;
 
 	
+
 
 	public Package() {
-		
+		super();
 	}
-	
 
-	//long packageId,
-	public Package( String packageName, String packageDescription, String packageType, double packageCost) {
-		//super();
-		//this.packageId = packageId;
+	public Package( String packageName, String packageDescription,String packageType, double packageCost, List<Booking> bookings,Hotel hotel) {
+		super();
 		this.packageName = packageName;
 		this.packageDescription = packageDescription;
 		this.packageType = packageType;
 		this.packageCost = packageCost;
+		this.bookings = bookings;
+		this.hotel = hotel;
 	}
 
-	public List<Hotel> getHotels() {
-		return hotels;
+	public Hotel getHotel() {
+		return hotel;
 	}
 
-
-	public void setHotels(List<Hotel> hotels) {
-		this.hotels = hotels;
+	public void setHotel(Hotel hotel) {
+		this.hotel = hotel;
 	}
-
-
 
 	public long getPackageId() {
 		return packageId;

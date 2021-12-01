@@ -17,10 +17,11 @@ public class Hotel {
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@Column
 	private long hotelId;
 	
 	@NotBlank(message = "Hotel Name is mandatory")
-	@Column(unique=true)
+	@Column()
 	private String hotelName;
 	
 	@NotBlank(message = "Hotel Type is mandatory")

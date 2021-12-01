@@ -1,0 +1,7 @@
+
+^
+java:S1481<"&Remove this unused "t" local variable.(Ëï§£ûÿÿÿÿ8ôİ¶¸Â/H¹RMINORZ
+CODE_SMELL
+j
+java:S2589%"7Remove this expression which always evaluates to "true"(ûºõ‡8æà‘±Â/HºRMAJORZ
+CODE_SMELL

@@ -12,6 +12,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.validation.constraints.NotBlank;
 
 @Entity
 @Table(name="User")
@@ -21,6 +22,7 @@ public class User {
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
     private long userId;
 	
+	@NotBlank(message = "customerName is mandatory")
 	@Column(name="userType")
 	private String userType;
 	

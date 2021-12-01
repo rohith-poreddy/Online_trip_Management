@@ -7,6 +7,9 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Pattern;
 
 @Entity
 @Table(name="Admin")
@@ -16,15 +19,18 @@ public class Admin {
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
     private long adminId;
 	
+	@NotBlank(message="Admin Name is mandatory")
 	@Column
 	private String adminName;
 	
 	@Column
 	private String password;
 	
+	@Email(message = "Enter valid email address")
 	@Column
 	private String email;
 	
+	@Pattern(regexp="(^$|[0-9]{10})",message="length must be 10 and valid")
 	@Column
 	private String mobile;
 	
